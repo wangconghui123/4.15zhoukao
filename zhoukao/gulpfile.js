@@ -1,6 +1,6 @@
 var gulp = require("gulp");
 var concat = require("gulp-concat");
-var sass = require("gulp-sass");
+var scss = require("gulp-sass");
 var uglify = require("gulp-uglify");
 var html = require("gulp-htmlmin");
 var rename = require("gulp-rename");
@@ -22,10 +22,10 @@ gulp.task("js", function() {
 })
 
 //压缩sass
-gulp.task("sass", function() {
-        return gulp.src("./src/sass*.scss")
-            .pipe(sass())
-            .pipe(gulp.dest("./src/sass"))
+gulp.task("scss", function() {
+        return gulp.src("./src/scss*.scss")
+            .pipe(scss())
+            .pipe(gulp.dest("./src/scss"))
     })
     //压缩图片
 gulp.task("img", function() {
@@ -49,10 +49,10 @@ gulp.task("webserver", function() {
 
 //监听sass文件 编译scss
 gulp.task("watch", function() {
-    gulp.watch("./src/sass*.scss", gulp.series("sass"))
+    gulp.watch("./src/scss*.scss", gulp.series("scss"))
 })
 
 //注册开发任务
-gulp.task("dev", gulp.series("sass", "webserver", "watch"));
+gulp.task("dev", gulp.series("scss", "webserver", "watch"));
 //注册上线任务
 gulp.task("build", gulp.porallel("img", "js"));
